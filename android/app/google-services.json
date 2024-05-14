@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "155238274470",
+    "project_id": "domiapp-10",
+    "storage_bucket": "domiapp-10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155238274470:android:9d6d27838ebb3d76d0eb67",
+        "android_client_info": {
+          "package_name": "com.mycompany.domigilson"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjTzwm-EruhTLx5F0xn5WkP6ukZOtPkeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
