@@ -46,61 +46,6 @@ class UserRecord extends FirestoreRecord {
   DateTime? get createdTime => _createdTime;
   bool hasCreatedTime() => _createdTime != null;
 
-  // "cep" field.
-  String? _cep;
-  String get cep => _cep ?? '';
-  bool hasCep() => _cep != null;
-
-  // "cpf" field.
-  String? _cpf;
-  String get cpf => _cpf ?? '';
-  bool hasCpf() => _cpf != null;
-
-  // "rg" field.
-  String? _rg;
-  String get rg => _rg ?? '';
-  bool hasRg() => _rg != null;
-
-  // "lagradouro" field.
-  String? _lagradouro;
-  String get lagradouro => _lagradouro ?? '';
-  bool hasLagradouro() => _lagradouro != null;
-
-  // "bairro" field.
-  String? _bairro;
-  String get bairro => _bairro ?? '';
-  bool hasBairro() => _bairro != null;
-
-  // "cidade" field.
-  String? _cidade;
-  String get cidade => _cidade ?? '';
-  bool hasCidade() => _cidade != null;
-
-  // "desc" field.
-  String? _desc;
-  String get desc => _desc ?? '';
-  bool hasDesc() => _desc != null;
-
-  // "especialidade" field.
-  String? _especialidade;
-  String get especialidade => _especialidade ?? '';
-  bool hasEspecialidade() => _especialidade != null;
-
-  // "docprof" field.
-  String? _docprof;
-  String get docprof => _docprof ?? '';
-  bool hasDocprof() => _docprof != null;
-
-  // "like" field.
-  bool? _like;
-  bool get like => _like ?? false;
-  bool hasLike() => _like != null;
-
-  // "img" field.
-  String? _img;
-  String get img => _img ?? '';
-  bool hasImg() => _img != null;
-
   // "tipo" field.
   bool? _tipo;
   bool get tipo => _tipo ?? false;
@@ -113,17 +58,6 @@ class UserRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
-    _cep = snapshotData['cep'] as String?;
-    _cpf = snapshotData['cpf'] as String?;
-    _rg = snapshotData['rg'] as String?;
-    _lagradouro = snapshotData['lagradouro'] as String?;
-    _bairro = snapshotData['bairro'] as String?;
-    _cidade = snapshotData['cidade'] as String?;
-    _desc = snapshotData['desc'] as String?;
-    _especialidade = snapshotData['especialidade'] as String?;
-    _docprof = snapshotData['docprof'] as String?;
-    _like = snapshotData['like'] as bool?;
-    _img = snapshotData['img'] as String?;
     _tipo = snapshotData['tipo'] as bool?;
   }
 
@@ -167,17 +101,6 @@ Map<String, dynamic> createUserRecordData({
   String? uid,
   String? phoneNumber,
   DateTime? createdTime,
-  String? cep,
-  String? cpf,
-  String? rg,
-  String? lagradouro,
-  String? bairro,
-  String? cidade,
-  String? desc,
-  String? especialidade,
-  String? docprof,
-  bool? like,
-  String? img,
   bool? tipo,
 }) {
   final firestoreData = mapToFirestore(
@@ -188,17 +111,6 @@ Map<String, dynamic> createUserRecordData({
       'uid': uid,
       'phone_number': phoneNumber,
       'created_time': createdTime,
-      'cep': cep,
-      'cpf': cpf,
-      'rg': rg,
-      'lagradouro': lagradouro,
-      'bairro': bairro,
-      'cidade': cidade,
-      'desc': desc,
-      'especialidade': especialidade,
-      'docprof': docprof,
-      'like': like,
-      'img': img,
       'tipo': tipo,
     }.withoutNulls,
   );
@@ -217,17 +129,6 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.uid == e2?.uid &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.cep == e2?.cep &&
-        e1?.cpf == e2?.cpf &&
-        e1?.rg == e2?.rg &&
-        e1?.lagradouro == e2?.lagradouro &&
-        e1?.bairro == e2?.bairro &&
-        e1?.cidade == e2?.cidade &&
-        e1?.desc == e2?.desc &&
-        e1?.especialidade == e2?.especialidade &&
-        e1?.docprof == e2?.docprof &&
-        e1?.like == e2?.like &&
-        e1?.img == e2?.img &&
         e1?.tipo == e2?.tipo;
   }
 
@@ -239,17 +140,6 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.uid,
         e?.phoneNumber,
         e?.createdTime,
-        e?.cep,
-        e?.cpf,
-        e?.rg,
-        e?.lagradouro,
-        e?.bairro,
-        e?.cidade,
-        e?.desc,
-        e?.especialidade,
-        e?.docprof,
-        e?.like,
-        e?.img,
         e?.tipo
       ]);
 

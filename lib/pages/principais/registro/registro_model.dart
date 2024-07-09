@@ -15,8 +15,6 @@ class RegistroModel extends FlutterFlowModel<RegistroWidget> {
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // State field(s) for tiposwict widget.
-  bool? tiposwictValue;
   // State field(s) for nome widget.
   FocusNode? nomeFocusNode;
   TextEditingController? nomeTextController;
@@ -74,6 +72,8 @@ class RegistroModel extends FlutterFlowModel<RegistroWidget> {
     return null;
   }
 
+  // State field(s) for tiposwict widget.
+  bool? tiposwictValue;
   // State field(s) for Switch widget.
   bool? switchValue;
 

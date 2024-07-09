@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'perfil_profissionalmedveterinario_model.dart';
@@ -14,10 +15,10 @@ export 'perfil_profissionalmedveterinario_model.dart';
 class PerfilProfissionalmedveterinarioWidget extends StatefulWidget {
   const PerfilProfissionalmedveterinarioWidget({
     super.key,
-    required this.profmrdveterinario,
+    required this.profmedveterinario,
   });
 
-  final DocumentReference? profmrdveterinario;
+  final DocumentReference? profmedveterinario;
 
   @override
   State<PerfilProfissionalmedveterinarioWidget> createState() =>
@@ -37,6 +38,7 @@ class _PerfilProfissionalmedveterinarioWidgetState
     _model =
         createModel(context, () => PerfilProfissionalmedveterinarioModel());
 
+    _model.switchValue = false;
     _model.mensagemaquiTextController ??= TextEditingController();
     _model.mensagemaquiFocusNode ??= FocusNode();
 
@@ -58,7 +60,7 @@ class _PerfilProfissionalmedveterinarioWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<MedveterinarioRecord>(
-      stream: MedveterinarioRecord.getDocument(widget.profmrdveterinario!),
+      stream: MedveterinarioRecord.getDocument(widget!.profmedveterinario!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -76,8 +78,10 @@ class _PerfilProfissionalmedveterinarioWidgetState
             ),
           );
         }
+
         final perfilProfissionalmedveterinarioMedveterinarioRecord =
             snapshot.data!;
+
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -97,7 +101,7 @@ class _PerfilProfissionalmedveterinarioWidgetState
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  context.pop();
+                  context.safePop();
                 },
               ),
               title: Align(
@@ -123,36 +127,130 @@ class _PerfilProfissionalmedveterinarioWidgetState
                 children: [
                   Container(
                     width: 390.0,
-                    height: 270.0,
+                    height: 230.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).info,
                       shape: BoxShape.rectangle,
                     ),
-                    child: Stack(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            'https://firebasestorage.googleapis.com/v0/b/domiapp-10.appspot.com/o/user%2FAtivo%20175.png?alt=media&token=c1155817-c168-4ff7-8561-14124a6ff0be',
-                            width: 390.0,
-                            height: 240.0,
-                            fit: BoxFit.cover,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 0.0, 0.0),
+                                child: Container(
+                                  width: 120.0,
+                                  height: 120.0,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.network(
+                                    perfilProfissionalmedveterinarioMedveterinarioRecord
+                                        .img,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      25.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    perfilProfissionalmedveterinarioMedveterinarioRecord
+                                        .nomeprof,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.01, 1.02),
-                          child: Container(
-                            width: 200.0,
-                            height: 200.0,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.network(
-                              perfilProfissionalmedveterinarioMedveterinarioRecord
-                                  .img,
-                              fit: BoxFit.cover,
-                            ),
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 10.0, 0.0, 0.0),
+                                  child: Text(
+                                    perfilProfissionalmedveterinarioMedveterinarioRecord
+                                        .email,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 10.0, 0.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.solidCommentDots,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
+                              ),
+                              Text(
+                                'Entrar em contato',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Switch.adaptive(
+                                value: _model.switchValue!,
+                                onChanged: (newValue) async {
+                                  setState(
+                                      () => _model.switchValue = newValue!);
+                                },
+                                activeColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                activeTrackColor: Color(0xFF1EF97A),
+                                inactiveTrackColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                inactiveThumbColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -173,70 +271,6 @@ class _PerfilProfissionalmedveterinarioWidgetState
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
-                                child: Text(
-                                  perfilProfissionalmedveterinarioMedveterinarioRecord
-                                      .nomeprof,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        fontSize: 25.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
-                                child: Text(
-                                  perfilProfissionalmedveterinarioMedveterinarioRecord
-                                      .email,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        fontSize: 19.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Aperte ao lado para enviar mensagem',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Switch.adaptive(
-                                    value: _model.switchValue ??= false,
-                                    onChanged: (newValue) async {
-                                      setState(
-                                          () => _model.switchValue = newValue!);
-                                    },
-                                    activeColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    activeTrackColor: Color(0xFF1EF97A),
-                                    inactiveTrackColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    inactiveThumbColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                  ),
-                                ],
-                              ),
                               if (_model.switchValue == true)
                                 Container(
                                   width: 350.0,
@@ -355,7 +389,7 @@ class _PerfilProfissionalmedveterinarioWidgetState
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 12.0),
+                                                  0.0, 15.0, 0.0, 12.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               await launchURL(
@@ -406,7 +440,7 @@ class _PerfilProfissionalmedveterinarioWidgetState
                   ),
                   Container(
                     width: 390.0,
-                    height: 300.0,
+                    height: 320.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
@@ -454,11 +488,11 @@ class _PerfilProfissionalmedveterinarioWidgetState
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          15.0, 10.0, 15.0, 0.0),
+                                          15.0, 10.0, 15.0, 10.0),
                                       child: SingleChildScrollView(
                                         primary: false,
                                         child: Column(
-                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
                                               perfilProfissionalmedveterinarioMedveterinarioRecord

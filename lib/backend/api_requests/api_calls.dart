@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
@@ -11,7 +12,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start Mercado Pago Group Code
 
 class MercadoPagoGroup {
-  static String baseUrl = 'https://api.mercadopago.com/v1';
+  static String getBaseUrl() => 'https://api.mercadopago.com/v1';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization':
@@ -29,6 +30,8 @@ class CriarPagamentoPixCall {
     String? email = '',
     String? firtsName = '',
   }) async {
+    final baseUrl = MercadoPagoGroup.getBaseUrl();
+
     final ffApiRequestBody = '''
 {
   "transaction_amount": ${transactionAmount},
@@ -41,7 +44,7 @@ class CriarPagamentoPixCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Criar pagamento pix',
-      apiUrl: '${MercadoPagoGroup.baseUrl}/payments',
+      apiUrl: '${baseUrl}/payments',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -56,6 +59,7 @@ class CriarPagamentoPixCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -68,15 +72,21 @@ class CriarPagamentoPixCall {
         response,
         r'''$.point_of_interaction.transaction_data.qr_code''',
       ));
+  String? qrcodee(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.point_of_interaction.transaction_data.qr_code_base64''',
+      ));
 }
 
 class BuscarPagamentoCall {
   Future<ApiCallResponse> call({
     String? iddopedido = '',
   }) async {
+    final baseUrl = MercadoPagoGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'Buscar pagamento',
-      apiUrl: '${MercadoPagoGroup.baseUrl}/payments/${iddopedido}',
+      apiUrl: '${baseUrl}/payments/${iddopedido}',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -88,6 +98,7 @@ class BuscarPagamentoCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -140,6 +151,7 @@ class CriarPIXCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -184,6 +196,7 @@ class StatusPixCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -233,6 +246,7 @@ class CriarTokenCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -307,6 +321,7 @@ class PagamentoCartaoMPCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -334,11 +349,21 @@ class ApiPagingParams {
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
 
+String _toEncodable(dynamic item) {
+  if (item is DocumentReference) {
+    return item.path;
+  }
+  return item;
+}
+
 String _serializeList(List? list) {
   list ??= <String>[];
   try {
-    return json.encode(list);
+    return json.encode(list, toEncodable: _toEncodable);
   } catch (_) {
+    if (kDebugMode) {
+      print("List serialization failed. Returning empty list.");
+    }
     return '[]';
   }
 }
@@ -346,8 +371,11 @@ String _serializeList(List? list) {
 String _serializeJson(dynamic jsonVar, [bool isList = false]) {
   jsonVar ??= (isList ? [] : {});
   try {
-    return json.encode(jsonVar);
+    return json.encode(jsonVar, toEncodable: _toEncodable);
   } catch (_) {
+    if (kDebugMode) {
+      print("Json serialization failed. Returning empty json.");
+    }
     return isList ? '[]' : '{}';
   }
 }

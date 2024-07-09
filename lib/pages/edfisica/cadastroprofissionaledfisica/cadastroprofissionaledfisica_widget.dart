@@ -78,6 +78,9 @@ class _CadastroprofissionaledfisicaWidgetState
     _model.descricaoTextController ??= TextEditingController();
     _model.descricaoFocusNode ??= FocusNode();
 
+    _model.planoTextController ??= TextEditingController();
+    _model.planoFocusNode ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -97,33 +100,27 @@ class _CadastroprofissionaledfisicaWidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderRadius: 30.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.safePop();
-            },
-          ),
-          actions: [],
-          flexibleSpace: FlexibleSpaceBar(
-            background: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                'assets/images/Prancheta_1.jpg',
-                fit: BoxFit.cover,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.0),
+          child: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderRadius: 30.0,
+              buttonSize: 70.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30.0,
               ),
+              onPressed: () async {
+                context.safePop();
+              },
             ),
+            actions: [],
+            centerTitle: false,
+            elevation: 0.0,
           ),
-          centerTitle: false,
-          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
@@ -1455,6 +1452,82 @@ class _CadastroprofissionaledfisicaWidgetState
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 16.0, 16.0, 0.0),
+                        child: TextFormField(
+                          controller: _model.planoTextController,
+                          focusNode: _model.planoFocusNode,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            '_model.planoTextController',
+                            Duration(milliseconds: 2000),
+                            () => setState(() {}),
+                          ),
+                          autofocus: false,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'Plano',
+                            hintText: 'Insira o seu plano Ex : anual ou mensal',
+                            hintStyle:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            suffixIcon:
+                                _model.planoTextController!.text.isNotEmpty
+                                    ? InkWell(
+                                        onTap: () async {
+                                          _model.planoTextController?.clear();
+                                          setState(() {});
+                                        },
+                                        child: Icon(
+                                          Icons.clear,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 20.0,
+                                        ),
+                                      )
+                                    : null,
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                          maxLines: null,
+                          keyboardType: TextInputType.multiline,
+                          validator: _model.planoTextControllerValidator
+                              .asValidator(context),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 10.0, 0.0, 10.0),
                         child: Text(
                           'Foto de perfil',
@@ -1620,9 +1693,14 @@ class _CadastroprofissionaledfisicaWidgetState
                             16.0, 16.0, 16.0, 16.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await EdfisicaRecord.collection
-                                .doc()
-                                .set(createEdfisicaRecordData(
+                            if (_model.formKey.currentState == null ||
+                                !_model.formKey.currentState!.validate()) {
+                              return;
+                            }
+
+                            await FisioterapeutaRecord.collection
+                                .doc(currentUserUid)
+                                .set(createFisioterapeutaRecordData(
                                   nome: _model.nomecompletoTextController.text,
                                   email: _model
                                       .emailprofissionalTextController.text,
@@ -1645,6 +1723,8 @@ class _CadastroprofissionaledfisicaWidgetState
                                       .nomeprofissionalTextController.text,
                                   numerocasa:
                                       _model.numerodacasaTextController.text,
+                                  plano: _model.planoTextController.text,
+                                  userId: currentUserReference,
                                 ));
                             await showDialog(
                               context: context,
@@ -1664,7 +1744,7 @@ class _CadastroprofissionaledfisicaWidgetState
                               },
                             );
 
-                            context.pushNamed('novahomedomi');
+                            context.pushNamed('principalcomlogin');
                           },
                           text: 'Cadastrar',
                           options: FFButtonOptions(

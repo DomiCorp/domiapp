@@ -101,6 +101,11 @@ class EnfermagemRecord extends FirestoreRecord {
   String get nomeprof => _nomeprof ?? '';
   bool hasNomeprof() => _nomeprof != null;
 
+  // "plano" field.
+  String? _plano;
+  String get plano => _plano ?? '';
+  bool hasPlano() => _plano != null;
+
   void _initializeFields() {
     _nome = snapshotData['nome'] as String?;
     _desc = snapshotData['desc'] as String?;
@@ -119,6 +124,7 @@ class EnfermagemRecord extends FirestoreRecord {
     _datanasc = snapshotData['datanasc'] as String?;
     _numerocasa = snapshotData['numerocasa'] as String?;
     _nomeprof = snapshotData['nomeprof'] as String?;
+    _plano = snapshotData['plano'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -173,6 +179,7 @@ Map<String, dynamic> createEnfermagemRecordData({
   String? datanasc,
   String? numerocasa,
   String? nomeprof,
+  String? plano,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -193,6 +200,7 @@ Map<String, dynamic> createEnfermagemRecordData({
       'datanasc': datanasc,
       'numerocasa': numerocasa,
       'nomeprof': nomeprof,
+      'plano': plano,
     }.withoutNulls,
   );
 
@@ -220,7 +228,8 @@ class EnfermagemRecordDocumentEquality implements Equality<EnfermagemRecord> {
         e1?.especialidade == e2?.especialidade &&
         e1?.datanasc == e2?.datanasc &&
         e1?.numerocasa == e2?.numerocasa &&
-        e1?.nomeprof == e2?.nomeprof;
+        e1?.nomeprof == e2?.nomeprof &&
+        e1?.plano == e2?.plano;
   }
 
   @override
@@ -241,7 +250,8 @@ class EnfermagemRecordDocumentEquality implements Equality<EnfermagemRecord> {
         e?.especialidade,
         e?.datanasc,
         e?.numerocasa,
-        e?.nomeprof
+        e?.nomeprof,
+        e?.plano
       ]);
 
   @override

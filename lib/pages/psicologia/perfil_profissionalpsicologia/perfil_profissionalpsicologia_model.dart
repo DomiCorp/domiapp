@@ -8,6 +8,7 @@ import 'perfil_profissionalpsicologia_widget.dart'
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,10 @@ class PerfilProfissionalpsicologiaModel
   FocusNode? mensagemaquiFocusNode;
   TextEditingController? mensagemaquiTextController;
   String? Function(BuildContext, String?)? mensagemaquiTextControllerValidator;
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
 
   @override
   void initState(BuildContext context) {}
@@ -29,5 +34,7 @@ class PerfilProfissionalpsicologiaModel
   void dispose() {
     mensagemaquiFocusNode?.dispose();
     mensagemaquiTextController?.dispose();
+
+    tabBarController?.dispose();
   }
 }

@@ -35,9 +35,9 @@ class FFAppState extends ChangeNotifier {
 
   int _status = 0;
   int get status => _status;
-  set status(int _value) {
-    _status = _value;
-    secureStorage.setInt('ff_status', _value);
+  set status(int value) {
+    _status = value;
+    secureStorage.setInt('ff_status', value);
   }
 
   void deleteStatus() {
@@ -46,38 +46,38 @@ class FFAppState extends ChangeNotifier {
 
   double _valorTotal = 0.0;
   double get valorTotal => _valorTotal;
-  set valorTotal(double _value) {
-    _valorTotal = _value;
+  set valorTotal(double value) {
+    _valorTotal = value;
   }
 
   String _chavePix = '';
   String get chavePix => _chavePix;
-  set chavePix(String _value) {
-    _chavePix = _value;
+  set chavePix(String value) {
+    _chavePix = value;
   }
 
   String _QRcode = '';
   String get QRcode => _QRcode;
-  set QRcode(String _value) {
-    _QRcode = _value;
+  set QRcode(String value) {
+    _QRcode = value;
   }
 
   int _IdPedido = 0;
   int get IdPedido => _IdPedido;
-  set IdPedido(int _value) {
-    _IdPedido = _value;
+  set IdPedido(int value) {
+    _IdPedido = value;
   }
 
   String _metodoPagamento = '';
   String get metodoPagamento => _metodoPagamento;
-  set metodoPagamento(String _value) {
-    _metodoPagamento = _value;
+  set metodoPagamento(String value) {
+    _metodoPagamento = value;
   }
 
   bool _PesquisaON = false;
   bool get PesquisaON => _PesquisaON;
-  set PesquisaON(bool _value) {
-    _PesquisaON = _value;
+  set PesquisaON(bool value) {
+    _PesquisaON = value;
   }
 }
 

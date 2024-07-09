@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'perfil_profissionalpsicologia_model.dart';
@@ -25,7 +26,8 @@ class PerfilProfissionalpsicologiaWidget extends StatefulWidget {
 }
 
 class _PerfilProfissionalpsicologiaWidgetState
-    extends State<PerfilProfissionalpsicologiaWidget> {
+    extends State<PerfilProfissionalpsicologiaWidget>
+    with TickerProviderStateMixin {
   late PerfilProfissionalpsicologiaModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -35,9 +37,15 @@ class _PerfilProfissionalpsicologiaWidgetState
     super.initState();
     _model = createModel(context, () => PerfilProfissionalpsicologiaModel());
 
+    _model.switchValue = false;
     _model.mensagemaquiTextController ??= TextEditingController();
     _model.mensagemaquiFocusNode ??= FocusNode();
 
+    _model.tabBarController = TabController(
+      vsync: this,
+      length: 2,
+      initialIndex: 0,
+    )..addListener(() => setState(() {}));
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -51,7 +59,7 @@ class _PerfilProfissionalpsicologiaWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<PsicologiaRecord>(
-      stream: PsicologiaRecord.getDocument(widget.profpsicologia!),
+      stream: PsicologiaRecord.getDocument(widget!.profpsicologia!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -69,7 +77,9 @@ class _PerfilProfissionalpsicologiaWidgetState
             ),
           );
         }
+
         final perfilProfissionalpsicologiaPsicologiaRecord = snapshot.data!;
+
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -89,7 +99,7 @@ class _PerfilProfissionalpsicologiaWidgetState
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  context.pop();
+                  context.safePop();
                 },
               ),
               title: Align(
@@ -115,32 +125,130 @@ class _PerfilProfissionalpsicologiaWidgetState
                 children: [
                   Container(
                     width: 390.0,
-                    height: 270.0,
+                    height: 230.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).info,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: Image.network(
-                          'CAES3AFDZzFVWlhoMFgyeHhaVGgxY2pBd0dBSWllaElnQ2d4QmJHVjRJRkpwY0dGeVpHOFJBQUFBQUFBQU0wQTZBaEFCUUFXb0FRQmFGQkVBQUFBQUFBQWdRQ0VBQUFBQUFBQWdRRUFCbWdFd0NnSUNBU29xQ0FSQ0FoSUFTZ3lDQVFrS0J3b0ZaVzFoYVd5Q0FSTUtFVk5qWVdabWIyeGtYMmsxYjNocU9UZ3krZ01BOGdVSkNRQUFBQUFBQVBBL09oQmxiV0ZwYkhCeWIyWnBZMmx2Ym1Gc1lnRENBUUE9',
-                        ).image,
-                      ),
                       shape: BoxShape.rectangle,
                     ),
-                    child: Stack(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 0.0, 0.0),
+                                child: Container(
+                                  width: 120.0,
+                                  height: 120.0,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.network(
+                                    perfilProfissionalpsicologiaPsicologiaRecord
+                                        .img,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      25.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    perfilProfissionalpsicologiaPsicologiaRecord
+                                        .nomeprof,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         Align(
-                          alignment: AlignmentDirectional(0.01, 1.02),
-                          child: Container(
-                            width: 200.0,
-                            height: 200.0,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.network(
-                              perfilProfissionalpsicologiaPsicologiaRecord.img,
-                              fit: BoxFit.cover,
-                            ),
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 10.0, 0.0, 0.0),
+                                  child: Text(
+                                    perfilProfissionalpsicologiaPsicologiaRecord
+                                        .email,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 10.0, 0.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.solidCommentDots,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
+                              ),
+                              Text(
+                                'Entrar em contato',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Switch.adaptive(
+                                value: _model.switchValue!,
+                                onChanged: (newValue) async {
+                                  setState(
+                                      () => _model.switchValue = newValue!);
+                                },
+                                activeColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                activeTrackColor: Color(0xFF1EF97A),
+                                inactiveTrackColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                inactiveThumbColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -161,88 +269,6 @@ class _PerfilProfissionalpsicologiaWidgetState
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
-                                child: Text(
-                                  perfilProfissionalpsicologiaPsicologiaRecord
-                                      .nomeprof,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        fontSize: 25.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
-                                child: Text(
-                                  perfilProfissionalpsicologiaPsicologiaRecord
-                                      .email,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        fontSize: 19.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
-                                child: Text(
-                                  perfilProfissionalpsicologiaPsicologiaRecord
-                                      .especialidade,
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        fontSize: 17.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Aperte ao lado para enviar mensagem',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Switch.adaptive(
-                                    value: _model.switchValue ??= false,
-                                    onChanged: (newValue) async {
-                                      setState(
-                                          () => _model.switchValue = newValue!);
-                                    },
-                                    activeColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    activeTrackColor: Color(0xFF1EF97A),
-                                    inactiveTrackColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    inactiveThumbColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                  ),
-                                ],
-                              ),
                               if (_model.switchValue == true)
                                 Container(
                                   width: 350.0,
@@ -361,7 +387,7 @@ class _PerfilProfissionalpsicologiaWidgetState
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 12.0),
+                                                  0.0, 15.0, 0.0, 12.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               await launchURL(
@@ -412,37 +438,106 @@ class _PerfilProfissionalpsicologiaWidgetState
                   ),
                   Container(
                     width: 390.0,
-                    height: 200.0,
+                    height: 320.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'Descrição',
-                            style: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color:
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment(0.0, 0),
+                                child: TabBar(
+                                  labelColor:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 20.0,
-                                  letterSpacing: 0.0,
+                                  unselectedLabelColor:
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  unselectedLabelStyle: TextStyle(),
+                                  indicatorColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  padding: EdgeInsets.all(4.0),
+                                  tabs: [
+                                    Tab(
+                                      text: 'Sobre',
+                                    ),
+                                    Tab(
+                                      text: 'Especialidade',
+                                    ),
+                                  ],
+                                  controller: _model.tabBarController,
+                                  onTap: (i) async {
+                                    [() async {}, () async {}][i]();
+                                  },
                                 ),
-                          ),
-                          Text(
-                            perfilProfissionalpsicologiaPsicologiaRecord.desc,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
+                              ),
+                              Expanded(
+                                child: TabBarView(
+                                  controller: _model.tabBarController,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 10.0, 15.0, 10.0),
+                                      child: SingleChildScrollView(
+                                        primary: false,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              perfilProfissionalpsicologiaPsicologiaRecord
+                                                  .desc,
+                                              textAlign: TextAlign.justify,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 17.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 10.0, 15.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            perfilProfissionalpsicologiaPsicologiaRecord
+                                                .especialidade,
+                                            textAlign: TextAlign.justify,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 17.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

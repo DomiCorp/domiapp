@@ -101,6 +101,16 @@ class EdfisicaRecord extends FirestoreRecord {
   String get numerocasa => _numerocasa ?? '';
   bool hasNumerocasa() => _numerocasa != null;
 
+  // "plano" field.
+  String? _plano;
+  String get plano => _plano ?? '';
+  bool hasPlano() => _plano != null;
+
+  // "refuserid" field.
+  DocumentReference? _refuserid;
+  DocumentReference? get refuserid => _refuserid;
+  bool hasRefuserid() => _refuserid != null;
+
   void _initializeFields() {
     _nome = snapshotData['nome'] as String?;
     _desc = snapshotData['desc'] as String?;
@@ -119,6 +129,8 @@ class EdfisicaRecord extends FirestoreRecord {
     _datanasc = snapshotData['datanasc'] as String?;
     _nomeprof = snapshotData['nomeprof'] as String?;
     _numerocasa = snapshotData['numerocasa'] as String?;
+    _plano = snapshotData['plano'] as String?;
+    _refuserid = snapshotData['refuserid'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -173,6 +185,8 @@ Map<String, dynamic> createEdfisicaRecordData({
   String? datanasc,
   String? nomeprof,
   String? numerocasa,
+  String? plano,
+  DocumentReference? refuserid,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -193,6 +207,8 @@ Map<String, dynamic> createEdfisicaRecordData({
       'datanasc': datanasc,
       'nomeprof': nomeprof,
       'numerocasa': numerocasa,
+      'plano': plano,
+      'refuserid': refuserid,
     }.withoutNulls,
   );
 
@@ -220,7 +236,9 @@ class EdfisicaRecordDocumentEquality implements Equality<EdfisicaRecord> {
         e1?.especialidade == e2?.especialidade &&
         e1?.datanasc == e2?.datanasc &&
         e1?.nomeprof == e2?.nomeprof &&
-        e1?.numerocasa == e2?.numerocasa;
+        e1?.numerocasa == e2?.numerocasa &&
+        e1?.plano == e2?.plano &&
+        e1?.refuserid == e2?.refuserid;
   }
 
   @override
@@ -241,7 +259,9 @@ class EdfisicaRecordDocumentEquality implements Equality<EdfisicaRecord> {
         e?.especialidade,
         e?.datanasc,
         e?.nomeprof,
-        e?.numerocasa
+        e?.numerocasa,
+        e?.plano,
+        e?.refuserid
       ]);
 
   @override

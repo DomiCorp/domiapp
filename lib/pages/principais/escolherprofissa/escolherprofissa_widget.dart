@@ -252,7 +252,7 @@ class _EscolherprofissaWidgetState extends State<EscolherprofissaWidget> {
                                                           BorderRadius.circular(
                                                               8.0),
                                                       child: Image.asset(
-                                                        'assets/images/fisio.jpg',
+                                                        'assets/images/7014653.jpg',
                                                         width: double.infinity,
                                                         height: double.infinity,
                                                         fit: BoxFit.contain,

@@ -101,6 +101,11 @@ class FisioterapeutaRecord extends FirestoreRecord {
   DocumentReference? get userId => _userId;
   bool hasUserId() => _userId != null;
 
+  // "plano" field.
+  String? _plano;
+  String get plano => _plano ?? '';
+  bool hasPlano() => _plano != null;
+
   void _initializeFields() {
     _nome = snapshotData['nome'] as String?;
     _email = snapshotData['email'] as String?;
@@ -119,6 +124,7 @@ class FisioterapeutaRecord extends FirestoreRecord {
     _numerocasa = snapshotData['numerocasa'] as String?;
     _nomeprof = snapshotData['nomeprof'] as String?;
     _userId = snapshotData['userId'] as DocumentReference?;
+    _plano = snapshotData['plano'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -173,6 +179,7 @@ Map<String, dynamic> createFisioterapeutaRecordData({
   String? numerocasa,
   String? nomeprof,
   DocumentReference? userId,
+  String? plano,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -193,6 +200,7 @@ Map<String, dynamic> createFisioterapeutaRecordData({
       'numerocasa': numerocasa,
       'nomeprof': nomeprof,
       'userId': userId,
+      'plano': plano,
     }.withoutNulls,
   );
 
@@ -221,7 +229,8 @@ class FisioterapeutaRecordDocumentEquality
         e1?.datanasc == e2?.datanasc &&
         e1?.numerocasa == e2?.numerocasa &&
         e1?.nomeprof == e2?.nomeprof &&
-        e1?.userId == e2?.userId;
+        e1?.userId == e2?.userId &&
+        e1?.plano == e2?.plano;
   }
 
   @override
@@ -242,7 +251,8 @@ class FisioterapeutaRecordDocumentEquality
         e?.datanasc,
         e?.numerocasa,
         e?.nomeprof,
-        e?.userId
+        e?.userId,
+        e?.plano
       ]);
 
   @override

@@ -80,20 +80,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? NovahomedomiWidget()
-          : NovahomedomisemloginWidget(),
+          ? PrincipalcomloginWidget()
+          : PrincipalsemloginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? NovahomedomiWidget()
-              : NovahomedomisemloginWidget(),
+              ? PrincipalcomloginWidget()
+              : PrincipalsemloginWidget(),
         ),
         FFRoute(
-          name: 'Inicio',
-          path: '/inicio',
-          builder: (context, params) => InicioWidget(),
+          name: 'sobresemlogin',
+          path: '/sobresemlogin',
+          builder: (context, params) => SobresemloginWidget(),
         ),
         FFRoute(
           name: 'Loginusuario',
@@ -111,31 +111,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => RegistroWidget(),
         ),
         FFRoute(
-          name: 'planosdepagamento',
-          path: '/planosdepagamento',
-          builder: (context, params) => PlanosdepagamentoWidget(),
-        ),
-        FFRoute(
-          name: 'listaedfisica',
-          path: '/listaedfisica',
-          builder: (context, params) => ListaedfisicaWidget(),
-        ),
-        FFRoute(
           name: 'escolherprofissa',
           path: '/escolherprofissa',
           builder: (context, params) => EscolherprofissaWidget(),
-        ),
-        FFRoute(
-          name: 'Perfilempresas',
-          path: '/perfilempresas',
-          builder: (context, params) => PerfilempresasWidget(
-            refempresa: params.getParam(
-              'refempresa',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['empresa'],
-            ),
-          ),
         ),
         FFRoute(
           name: 'resetarsenha',
@@ -148,29 +126,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => EditarmeuperfilWidget(),
         ),
         FFRoute(
-          name: 'pagnovo',
-          path: '/pagnovo',
-          builder: (context, params) => PagnovoWidget(),
+          name: 'principalcomlogin',
+          path: '/principalcomlogin',
+          builder: (context, params) => PrincipalcomloginWidget(),
         ),
         FFRoute(
-          name: 'pagacartao',
-          path: '/pagacartao',
-          builder: (context, params) => PagacartaoWidget(),
-        ),
-        FFRoute(
-          name: 'explicaprofissional',
-          path: '/explicaprofissional',
-          builder: (context, params) => ExplicaprofissionalWidget(),
-        ),
-        FFRoute(
-          name: 'novahomedomi',
-          path: '/novahomedomi',
-          builder: (context, params) => NovahomedomiWidget(),
-        ),
-        FFRoute(
-          name: 'novahomedomisemlogin',
-          path: '/novahomedomisemlogin',
-          builder: (context, params) => NovahomedomisemloginWidget(),
+          name: 'principalsemlogin',
+          path: '/principalsemlogin',
+          builder: (context, params) => PrincipalsemloginWidget(),
         ),
         FFRoute(
           name: 'suportedomi',
@@ -178,106 +141,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SuportedomiWidget(),
         ),
         FFRoute(
-          name: 'statuspedidosemestral',
-          path: '/statuspedidosemestral',
-          builder: (context, params) => StatuspedidosemestralWidget(),
-        ),
-        FFRoute(
-          name: 'formapagesemestral',
-          path: '/formapagesemestral',
-          builder: (context, params) => FormapagesemestralWidget(),
-        ),
-        FFRoute(
-          name: 'sobreoapp',
-          path: '/sobreoapp',
-          builder: (context, params) => SobreoappWidget(),
-        ),
-        FFRoute(
-          name: 'sobreoapplogado',
-          path: '/sobreoapplogado',
-          builder: (context, params) => SobreoapplogadoWidget(),
-        ),
-        FFRoute(
           name: 'termosdeservicoprofi',
           path: '/termosdeservicoprofi',
           builder: (context, params) => TermosdeservicoprofiWidget(),
-        ),
-        FFRoute(
-          name: 'formapagemensal',
-          path: '/formapagemensal',
-          builder: (context, params) => FormapagemensalWidget(),
-        ),
-        FFRoute(
-          name: 'statuspedidomensal',
-          path: '/statuspedidomensal',
-          builder: (context, params) => StatuspedidomensalWidget(),
-        ),
-        FFRoute(
-          name: 'pagacartaoanual',
-          path: '/pagacartaoanual',
-          builder: (context, params) => PagacartaoanualWidget(),
-        ),
-        FFRoute(
-          name: 'pagacartamensal',
-          path: '/pagacartamensal',
-          builder: (context, params) => PagacartamensalWidget(),
-        ),
-        FFRoute(
-          name: 'formapageanual',
-          path: '/formapageanual',
-          builder: (context, params) => FormapageanualWidget(),
-        ),
-        FFRoute(
-          name: 'statuspedidoanual',
-          path: '/statuspedidoanual',
-          builder: (context, params) => StatuspedidoanualWidget(),
-        ),
-        FFRoute(
-          name: 'listadeEnfermagem',
-          path: '/listadeEnfermagem',
-          builder: (context, params) => ListadeEnfermagemWidget(),
-        ),
-        FFRoute(
-          name: 'listadeEstetica',
-          path: '/listadeEstetica',
-          builder: (context, params) => ListadeEsteticaWidget(),
-        ),
-        FFRoute(
-          name: 'listadeFisioterapeuta',
-          path: '/listadeFisioterapeuta',
-          builder: (context, params) => ListadeFisioterapeutaWidget(),
-        ),
-        FFRoute(
-          name: 'listadeMedicos',
-          path: '/listadeMedicos',
-          builder: (context, params) => ListadeMedicosWidget(),
-        ),
-        FFRoute(
-          name: 'listadeMedicoVeterinario',
-          path: '/listadeMedicoVeterinario',
-          builder: (context, params) => ListadeMedicoVeterinarioWidget(),
-        ),
-        FFRoute(
-          name: 'listadeNutricao',
-          path: '/listadeNutricao',
-          builder: (context, params) => ListadeNutricaoWidget(),
-        ),
-        FFRoute(
-          name: 'listadePsicologia',
-          path: '/listadePsicologia',
-          builder: (context, params) => ListadePsicologiaWidget(),
-        ),
-        FFRoute(
-          name: 'PerfilProfissionaledfisica',
-          path: '/perfilProfissionaledfisica',
-          builder: (context, params) => PerfilProfissionaledfisicaWidget(
-            profedfisica: params.getParam(
-              'profedfisica',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['edfisica'],
-            ),
-          ),
         ),
         FFRoute(
           name: 'cadastroprofissionaledfisica',
@@ -303,18 +169,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'PerfilProfissionalenfermage',
-          path: '/perfilProfissionalenfermage',
-          builder: (context, params) => PerfilProfissionalenfermageWidget(
-            profenfermagem: params.getParam(
-              'profenfermagem',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['enfermagem'],
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'cadastroprofissionalenferamgem',
           path: '/cadastroprofissionalenferamgem',
           builder: (context, params) => CadastroprofissionalenferamgemWidget(),
@@ -323,6 +177,56 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'cadastroprofissionalestetica',
           path: '/cadastroprofissionalestetica',
           builder: (context, params) => CadastroprofissionalesteticaWidget(),
+        ),
+        FFRoute(
+          name: 'cadastroprofissionalmedicos',
+          path: '/cadastroprofissionalmedicos',
+          builder: (context, params) => CadastroprofissionalmedicosWidget(),
+        ),
+        FFRoute(
+          name: 'cadastroprofissionalmedveterinario',
+          path: '/cadastroprofissionalmedveterinario',
+          builder: (context, params) =>
+              CadastroprofissionalmedveterinarioWidget(),
+        ),
+        FFRoute(
+          name: 'cadastroprofissionalnutricao',
+          path: '/cadastroprofissionalnutricao',
+          builder: (context, params) => CadastroprofissionalnutricaoWidget(),
+        ),
+        FFRoute(
+          name: 'cadastroprofissionalpsicologo',
+          path: '/cadastroprofissionalpsicologo',
+          builder: (context, params) => CadastroprofissionalpsicologoWidget(),
+        ),
+        FFRoute(
+          name: 'planos_de_pagamento',
+          path: '/planosDePagamento',
+          builder: (context, params) => PlanosDePagamentoWidget(),
+        ),
+        FFRoute(
+          name: 'PerfilProfissionaledfisica',
+          path: '/perfilProfissionaledfisica',
+          builder: (context, params) => PerfilProfissionaledfisicaWidget(
+            profedfisica: params.getParam(
+              'profedfisica',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['edfisica'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'PerfilProfissionalenfermagem',
+          path: '/perfilProfissionalenfermagem',
+          builder: (context, params) => PerfilProfissionalenfermagemWidget(
+            profenfermagem: params.getParam(
+              'profenfermagem',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['enfermagem'],
+            ),
+          ),
         ),
         FFRoute(
           name: 'PerfilProfissionalestetica',
@@ -337,11 +241,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'cadastroprofissionalmedicos',
-          path: '/cadastroprofissionalmedicos',
-          builder: (context, params) => CadastroprofissionalmedicosWidget(),
-        ),
-        FFRoute(
           name: 'PerfilProfissionalmedicos',
           path: '/perfilProfissionalmedicos',
           builder: (context, params) => PerfilProfissionalmedicosWidget(
@@ -354,27 +253,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'cadastroprofissionalmedveterinario',
-          path: '/cadastroprofissionalmedveterinario',
-          builder: (context, params) =>
-              CadastroprofissionalmedveterinarioWidget(),
-        ),
-        FFRoute(
           name: 'PerfilProfissionalmedveterinario',
           path: '/perfilProfissionalmedveterinario',
           builder: (context, params) => PerfilProfissionalmedveterinarioWidget(
-            profmrdveterinario: params.getParam(
-              'profmrdveterinario',
+            profmedveterinario: params.getParam(
+              'profmedveterinario',
               ParamType.DocumentReference,
               isList: false,
               collectionNamePath: ['medveterinario'],
             ),
           ),
-        ),
-        FFRoute(
-          name: 'cadastroprofissionalnutricao',
-          path: '/cadastroprofissionalnutricao',
-          builder: (context, params) => CadastroprofissionalnutricaoWidget(),
         ),
         FFRoute(
           name: 'PerfilProfissionalnutricao',
@@ -389,11 +277,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'cadastroprofissionalpsicologo',
-          path: '/cadastroprofissionalpsicologo',
-          builder: (context, params) => CadastroprofissionalpsicologoWidget(),
-        ),
-        FFRoute(
           name: 'PerfilProfissionalpsicologia',
           path: '/perfilProfissionalpsicologia',
           builder: (context, params) => PerfilProfissionalpsicologiaWidget(
@@ -406,16 +289,171 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'editarprofissional',
-          path: '/editarprofissional',
-          builder: (context, params) => EditarprofissionalWidget(
-            refuserupdate: params.getParam(
-              'refuserupdate',
+          name: 'listadeFisioterapeuta',
+          path: '/listadeFisioterapeuta',
+          builder: (context, params) => ListadeFisioterapeutaWidget(),
+        ),
+        FFRoute(
+          name: 'listadeEdfisica',
+          path: '/listadeEdfisica',
+          builder: (context, params) => ListadeEdfisicaWidget(),
+        ),
+        FFRoute(
+          name: 'listadeenfermagem',
+          path: '/listadeenfermagem',
+          builder: (context, params) => ListadeenfermagemWidget(),
+        ),
+        FFRoute(
+          name: 'listadeestetica',
+          path: '/listadeestetica',
+          builder: (context, params) => ListadeesteticaWidget(),
+        ),
+        FFRoute(
+          name: 'listademedicos',
+          path: '/listademedicos',
+          builder: (context, params) => ListademedicosWidget(),
+        ),
+        FFRoute(
+          name: 'listademedveterinario',
+          path: '/listademedveterinario',
+          builder: (context, params) => ListademedveterinarioWidget(),
+        ),
+        FFRoute(
+          name: 'listadenutricao',
+          path: '/listadenutricao',
+          builder: (context, params) => ListadenutricaoWidget(),
+        ),
+        FFRoute(
+          name: 'listadepsicologia',
+          path: '/listadepsicologia',
+          builder: (context, params) => ListadepsicologiaWidget(),
+        ),
+        FFRoute(
+          name: 'ajudasuporte',
+          path: '/ajudasuporte',
+          builder: (context, params) => AjudasuporteWidget(),
+        ),
+        FFRoute(
+          name: 'linkPagamentoanual',
+          path: '/linkPagamentoanual',
+          builder: (context, params) => LinkPagamentoanualWidget(),
+        ),
+        FFRoute(
+          name: 'perfildeempresas',
+          path: '/perfildeempresas',
+          builder: (context, params) => PerfildeempresasWidget(
+            empresas: params.getParam(
+              'empresas',
               ParamType.DocumentReference,
               isList: false,
-              collectionNamePath: ['user'],
+              collectionNamePath: ['empresas'],
             ),
           ),
+        ),
+        FFRoute(
+          name: 'suporteeditarperfilprofissional',
+          path: '/suporteeditarperfilprofissional',
+          builder: (context, params) => SuporteeditarperfilprofissionalWidget(),
+        ),
+        FFRoute(
+          name: 'Termodeservicoprofissional',
+          path: '/termodeservicoprofissional',
+          builder: (context, params) => TermodeservicoprofissionalWidget(),
+        ),
+        FFRoute(
+          name: 'planos_pagamento',
+          path: '/planosPagamento',
+          builder: (context, params) => PlanosPagamentoWidget(),
+        ),
+        FFRoute(
+          name: 'pagamentoanual',
+          path: '/pagamentoanual',
+          builder: (context, params) => PagamentoanualWidget(),
+        ),
+        FFRoute(
+          name: 'pagar_com_link',
+          path: '/pagarComLink',
+          builder: (context, params) => PagarComLinkWidget(),
+        ),
+        FFRoute(
+          name: 'pagar_com_link_semestral',
+          path: '/pagarComLinkSemestral',
+          builder: (context, params) => PagarComLinkSemestralWidget(),
+        ),
+        FFRoute(
+          name: 'pagamentosemestral',
+          path: '/pagamentosemestral',
+          builder: (context, params) => PagamentosemestralWidget(),
+        ),
+        FFRoute(
+          name: 'linkPagamentosemestral',
+          path: '/linkPagamentosemestral',
+          builder: (context, params) => LinkPagamentosemestralWidget(),
+        ),
+        FFRoute(
+          name: 'pagar_com_link_mensal',
+          path: '/pagarComLinkMensal',
+          builder: (context, params) => PagarComLinkMensalWidget(),
+        ),
+        FFRoute(
+          name: 'pagamentomensal',
+          path: '/pagamentomensal',
+          builder: (context, params) => PagamentomensalWidget(),
+        ),
+        FFRoute(
+          name: 'linkPagamentomensal',
+          path: '/linkPagamentomensal',
+          builder: (context, params) => LinkPagamentomensalWidget(),
+        ),
+        FFRoute(
+          name: 'linkrenovarpagamentoanual',
+          path: '/linkrenovarpagamentoanual',
+          builder: (context, params) => LinkrenovarpagamentoanualWidget(),
+        ),
+        FFRoute(
+          name: 'renovarpagamentoanual',
+          path: '/renovarpagamentoanual',
+          builder: (context, params) => RenovarpagamentoanualWidget(),
+        ),
+        FFRoute(
+          name: 'pagamentopixanual',
+          path: '/pagamentopixanual',
+          builder: (context, params) => PagamentopixanualWidget(),
+        ),
+        FFRoute(
+          name: 'linkpagamento_semestral',
+          path: '/linkpagamentoSemestral',
+          builder: (context, params) => LinkpagamentoSemestralWidget(),
+        ),
+        FFRoute(
+          name: 'renovarpagamentosemestral',
+          path: '/renovarpagamentosemestral',
+          builder: (context, params) => RenovarpagamentosemestralWidget(),
+        ),
+        FFRoute(
+          name: 'pagamentopixsemestral',
+          path: '/pagamentopixsemestral',
+          builder: (context, params) => PagamentopixsemestralWidget(),
+        ),
+        FFRoute(
+          name: 'renovarpagamento_mensal',
+          path: '/renovarpagamentoMensal',
+          builder: (context, params) => RenovarpagamentoMensalWidget(),
+        ),
+        FFRoute(
+          name: 'pixrenovarpagamento',
+          path: '/pixrenovarpagamento',
+          builder: (context, params) => PixrenovarpagamentoWidget(),
+        ),
+        FFRoute(
+          name: 'linkpagamentomesnal',
+          path: '/linkpagamentomesnal',
+          builder: (context, params) => LinkpagamentomesnalWidget(),
+        ),
+        FFRoute(
+          name: 'sobrelogin',
+          path: '/sobrelogin',
+          builder: (context, params) => SobreloginWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -586,7 +624,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/novahomedomisemlogin';
+            return '/principalsemlogin';
           }
           return null;
         },
@@ -601,7 +639,7 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  color: Colors.transparent,
                   child: Image.asset(
                     'assets/images/Ativo_14.png',
                     fit: BoxFit.contain,

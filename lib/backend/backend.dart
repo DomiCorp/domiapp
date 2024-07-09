@@ -12,9 +12,9 @@ import 'schema/medveterinario_record.dart';
 import 'schema/enfermagem_record.dart';
 import 'schema/medicos_record.dart';
 import 'schema/fisioterapeuta_record.dart';
-import 'schema/empresa_record.dart';
 import 'schema/nutricao_record.dart';
 import 'schema/psicologia_record.dart';
+import 'schema/empresas_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -30,9 +30,9 @@ export 'schema/medveterinario_record.dart';
 export 'schema/enfermagem_record.dart';
 export 'schema/medicos_record.dart';
 export 'schema/fisioterapeuta_record.dart';
-export 'schema/empresa_record.dart';
 export 'schema/nutricao_record.dart';
 export 'schema/psicologia_record.dart';
+export 'schema/empresas_record.dart';
 
 /// Functions to query UserRecords (as a Stream and as a Future).
 Future<int> queryUserRecordCount({
@@ -293,43 +293,6 @@ Future<List<FisioterapeutaRecord>> queryFisioterapeutaRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query EmpresaRecords (as a Stream and as a Future).
-Future<int> queryEmpresaRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      EmpresaRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<EmpresaRecord>> queryEmpresaRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      EmpresaRecord.collection,
-      EmpresaRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<EmpresaRecord>> queryEmpresaRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      EmpresaRecord.collection,
-      EmpresaRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query NutricaoRecords (as a Stream and as a Future).
 Future<int> queryNutricaoRecordCount({
   Query Function(Query)? queryBuilder,
@@ -399,6 +362,43 @@ Future<List<PsicologiaRecord>> queryPsicologiaRecordOnce({
     queryCollectionOnce(
       PsicologiaRecord.collection,
       PsicologiaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query EmpresasRecords (as a Stream and as a Future).
+Future<int> queryEmpresasRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      EmpresasRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<EmpresasRecord>> queryEmpresasRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      EmpresasRecord.collection,
+      EmpresasRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<EmpresasRecord>> queryEmpresasRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      EmpresasRecord.collection,
+      EmpresasRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

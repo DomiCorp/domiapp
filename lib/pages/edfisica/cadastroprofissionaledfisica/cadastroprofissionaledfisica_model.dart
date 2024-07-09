@@ -96,6 +96,10 @@ class CadastroprofissionaledfisicaModel
   FocusNode? descricaoFocusNode;
   TextEditingController? descricaoTextController;
   String? Function(BuildContext, String?)? descricaoTextControllerValidator;
+  // State field(s) for plano widget.
+  FocusNode? planoFocusNode;
+  TextEditingController? planoTextController;
+  String? Function(BuildContext, String?)? planoTextControllerValidator;
   bool isDataUploading3 = false;
   FFUploadedFile uploadedLocalFile3 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -152,5 +156,8 @@ class CadastroprofissionaledfisicaModel
 
     descricaoFocusNode?.dispose();
     descricaoTextController?.dispose();
+
+    planoFocusNode?.dispose();
+    planoTextController?.dispose();
   }
 }

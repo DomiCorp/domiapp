@@ -97,33 +97,27 @@ class _CadastroprofissionalmedicosWidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderRadius: 30.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              size: 30.0,
-            ),
-            onPressed: () {
-              print('IconButton pressed ...');
-            },
-          ),
-          actions: [],
-          flexibleSpace: FlexibleSpaceBar(
-            background: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                'assets/images/Prancheta_1.jpg',
-                fit: BoxFit.cover,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.0),
+          child: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderRadius: 30.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30.0,
               ),
+              onPressed: () {
+                print('IconButton pressed ...');
+              },
             ),
+            actions: [],
+            centerTitle: false,
+            elevation: 0.0,
           ),
-          centerTitle: false,
-          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
@@ -1620,18 +1614,14 @@ class _CadastroprofissionalmedicosWidgetState
                             16.0, 16.0, 16.0, 16.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await MedveterinarioRecord.collection
+                            await MedicosRecord.collection
                                 .doc(currentUserUid)
-                                .set(createMedveterinarioRecordData(
-                                  nome: _model.nomecompletoTextController.text,
+                                .set(createMedicosRecordData(
                                   email: _model
                                       .emailprofissionalTextController.text,
-                                  numero:
-                                      _model.numerocelularTextController.text,
                                   rg: _model.rgTextController.text,
                                   cpf: _model.cpfTextController.text,
                                   bairro: _model.bairroTextController.text,
-                                  logradouro: _model.ruaTextController.text,
                                   cidade: _model.cidadeTextController.text,
                                   desc: _model.descricaoTextController.text,
                                   docprof: _model.uploadedFileUrl2,
@@ -1641,10 +1631,17 @@ class _CadastroprofissionalmedicosWidgetState
                                   datanasc:
                                       _model.dataaniversarioTextController.text,
                                   cep: _model.cepTextController.text,
-                                  nomeprof: _model
-                                      .nomeprofissionalTextController.text,
                                   numerocasa:
                                       _model.numerodacasaTextController.text,
+                                  phoneNumber:
+                                      _model.numerocelularTextController.text,
+                                  lagradouro: _model.ruaTextController.text,
+                                  emailprofissional: _model
+                                      .emailprofissionalTextController.text,
+                                  nomeprofissional: _model
+                                      .nomeprofissionalTextController.text,
+                                  nomecompleto:
+                                      _model.nomecompletoTextController.text,
                                 ));
                             await showDialog(
                               context: context,
@@ -1664,7 +1661,7 @@ class _CadastroprofissionalmedicosWidgetState
                               },
                             );
 
-                            context.pushNamed('novahomedomi');
+                            context.pushNamed('principalcomlogin');
                           },
                           text: 'Cadastrar',
                           options: FFButtonOptions(

@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,12 @@ class _ListadeFisioterapeutaWidgetState
     super.initState();
     _model = createModel(context, () => ListadeFisioterapeutaModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().PesquisaON = false;
+      setState(() {});
+    });
+
     _model.esntradabuscaTextController ??= TextEditingController();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -49,7 +56,10 @@ class _ListadeFisioterapeutaWidgetState
     context.watch<FFAppState>();
 
     return StreamBuilder<List<FisioterapeutaRecord>>(
-      stream: queryFisioterapeutaRecord(),
+      stream: queryFisioterapeutaRecord(
+        queryBuilder: (fisioterapeutaRecord) =>
+            fisioterapeutaRecord.orderBy('nome'),
+      ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -69,6 +79,7 @@ class _ListadeFisioterapeutaWidgetState
         }
         List<FisioterapeutaRecord>
             listadeFisioterapeutaFisioterapeutaRecordList = snapshot.data!;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -235,7 +246,10 @@ class _ListadeFisioterapeutaWidgetState
                                                                     .fromTerms(
                                                                         record,
                                                                         [
-                                                                  record.nome!
+                                                                  record
+                                                                      .especialidade!,
+                                                                  record
+                                                                      .nomeprof!
                                                                 ]),
                                                           )
                                                           .toList(),
@@ -248,10 +262,9 @@ class _ListadeFisioterapeutaWidgetState
                                                             .toList();
                                                     ;
                                                   });
-                                                  setState(() {
-                                                    FFAppState().PesquisaON =
-                                                        true;
-                                                  });
+                                                  FFAppState().PesquisaON =
+                                                      true;
+                                                  setState(() {});
                                                 },
                                               ),
                                               autofocus: true,
@@ -342,11 +355,25 @@ class _ListadeFisioterapeutaWidgetState
                                       ),
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.close,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      FFAppState().PesquisaON = false;
+                                      setState(() {});
+                                      setState(() {
+                                        _model.esntradabuscaTextController
+                                            ?.clear();
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.close,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -356,27 +383,57 @@ class _ListadeFisioterapeutaWidgetState
                       ],
                     ),
                   ),
+                  if (FFAppState().PesquisaON)
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'resultado da pesquisa',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                          Text(
+                            _model.simpleSearchResults.length.toString(),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
                   if (!FFAppState().PesquisaON)
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: Builder(
                         builder: (context) {
-                          final fisioterapia =
+                          final fisioterapeuta =
                               listadeFisioterapeutaFisioterapeutaRecordList
                                   .toList();
+
                           return ListView.builder(
                             padding: EdgeInsets.zero,
                             primary: false,
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
-                            itemCount: fisioterapia.length,
-                            itemBuilder: (context, fisioterapiaIndex) {
-                              final fisioterapiaItem =
-                                  fisioterapia[fisioterapiaIndex];
+                            itemCount: fisioterapeuta.length,
+                            itemBuilder: (context, fisioterapeutaIndex) {
+                              final fisioterapeutaItem =
+                                  fisioterapeuta[fisioterapeutaIndex];
                               return Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 16.0, 8.0),
+                                    10.0, 0.0, 10.0, 20.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -387,85 +444,89 @@ class _ListadeFisioterapeutaWidgetState
                                       'PerfilProfissionalfisio',
                                       queryParameters: {
                                         'proffisiotera': serializeParam(
-                                          fisioterapiaItem.reference,
+                                          fisioterapeutaItem.reference,
                                           ParamType.DocumentReference,
                                         ),
                                       }.withoutNulls,
                                     );
                                   },
                                   child: Container(
-                                    width: double.infinity,
+                                    width: 100.0,
+                                    height: 100.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 3.0,
-                                          color: Color(0x411D2429),
-                                          offset: Offset(
-                                            0.0,
-                                            1.0,
-                                          ),
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Container(
-                                            width: 75.0,
-                                            height: 75.0,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.network(
-                                              fisioterapiaItem.img,
-                                              fit: BoxFit.cover,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 90.0,
+                                              height: 90.0,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.network(
+                                                fisioterapeutaItem.img,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 8.0, 4.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    fisioterapiaItem.nomeprof,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    fisioterapiaItem
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 15.0, 10.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  fisioterapeutaItem.nomeprof,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    fisioterapeutaItem
                                                         .especialidade
                                                         .maybeHandleOverflow(
-                                                      maxChars: 25,
+                                                      maxChars: 26,
                                                       replacement: '…',
                                                     ),
+                                                    textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],
@@ -482,24 +543,24 @@ class _ListadeFisioterapeutaWidgetState
                   if (FFAppState().PesquisaON)
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: Builder(
                         builder: (context) {
-                          final fisioterapi =
-                              listadeFisioterapeutaFisioterapeutaRecordList
-                                  .toList();
+                          final fisioterapeuta =
+                              _model.simpleSearchResults.toList();
+
                           return ListView.builder(
                             padding: EdgeInsets.zero,
                             primary: false,
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
-                            itemCount: fisioterapi.length,
-                            itemBuilder: (context, fisioterapiIndex) {
-                              final fisioterapiItem =
-                                  fisioterapi[fisioterapiIndex];
+                            itemCount: fisioterapeuta.length,
+                            itemBuilder: (context, fisioterapeutaIndex) {
+                              final fisioterapeutaItem =
+                                  fisioterapeuta[fisioterapeutaIndex];
                               return Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 16.0, 8.0),
+                                    10.0, 0.0, 10.0, 20.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -510,72 +571,74 @@ class _ListadeFisioterapeutaWidgetState
                                       'PerfilProfissionalfisio',
                                       queryParameters: {
                                         'proffisiotera': serializeParam(
-                                          fisioterapiItem.reference,
+                                          fisioterapeutaItem.reference,
                                           ParamType.DocumentReference,
                                         ),
                                       }.withoutNulls,
                                     );
                                   },
                                   child: Container(
-                                    width: double.infinity,
+                                    width: 100.0,
+                                    height: 100.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 3.0,
-                                          color: Color(0x411D2429),
-                                          offset: Offset(
-                                            0.0,
-                                            1.0,
-                                          ),
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Container(
-                                            width: 75.0,
-                                            height: 75.0,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.network(
-                                              fisioterapiItem.img,
-                                              fit: BoxFit.cover,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 90.0,
+                                              height: 90.0,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.network(
+                                                fisioterapeutaItem.img,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 8.0, 4.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    fisioterapiItem.nomeprof,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    fisioterapiItem
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 15.0, 10.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  fisioterapeutaItem.nomeprof,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    fisioterapeutaItem
                                                         .especialidade
                                                         .maybeHandleOverflow(
-                                                      maxChars: 25,
+                                                      maxChars: 26,
                                                       replacement: '…',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -584,11 +647,12 @@ class _ListadeFisioterapeutaWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 14.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],

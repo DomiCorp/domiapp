@@ -97,33 +97,27 @@ class _CadastroprofissionalnutricaoWidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderRadius: 30.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              size: 30.0,
-            ),
-            onPressed: () {
-              print('IconButton pressed ...');
-            },
-          ),
-          actions: [],
-          flexibleSpace: FlexibleSpaceBar(
-            background: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                'assets/images/Prancheta_1.jpg',
-                fit: BoxFit.cover,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(40.0),
+          child: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderRadius: 30.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30.0,
               ),
+              onPressed: () {
+                print('IconButton pressed ...');
+              },
             ),
+            actions: [],
+            centerTitle: false,
+            elevation: 0.0,
           ),
-          centerTitle: false,
-          elevation: 0.0,
         ),
         body: SafeArea(
           top: true,
@@ -1664,7 +1658,7 @@ class _CadastroprofissionalnutricaoWidgetState
                               },
                             );
 
-                            context.pushNamed('novahomedomi');
+                            context.pushNamed('principalcomlogin');
                           },
                           text: 'Cadastrar',
                           options: FFButtonOptions(

@@ -1,97 +1,120 @@
 // Export pages
-export '/pages/inicio/inicio_widget.dart' show InicioWidget;
+export '/pages/principais/sobresemlogin/sobresemlogin_widget.dart'
+    show SobresemloginWidget;
 export '/pages/principais/loginusuario/loginusuario_widget.dart'
     show LoginusuarioWidget;
 export '/pages/principais/esqueceusenha/esqueceusenha_widget.dart'
     show EsqueceusenhaWidget;
 export '/pages/principais/registro/registro_widget.dart' show RegistroWidget;
-export '/pages/pagamento/planosdepagamento/planosdepagamento_widget.dart'
-    show PlanosdepagamentoWidget;
-export '/pages/edfisica/listaedfisica/listaedfisica_widget.dart'
-    show ListaedfisicaWidget;
 export '/pages/principais/escolherprofissa/escolherprofissa_widget.dart'
     show EscolherprofissaWidget;
-export '/pages/principais/perfilempresas/perfilempresas_widget.dart'
-    show PerfilempresasWidget;
 export '/pages/principais/resetarsenha/resetarsenha_widget.dart'
     show ResetarsenhaWidget;
 export '/pages/novodomi/editarmeuperfil/editarmeuperfil_widget.dart'
     show EditarmeuperfilWidget;
-export '/pages/pagamento/pagnovo/pagnovo_widget.dart' show PagnovoWidget;
-export '/pages/pagamento/semestral/pagacartao/pagacartao_widget.dart'
-    show PagacartaoWidget;
-export '/explicaprofissional/explicaprofissional_widget.dart'
-    show ExplicaprofissionalWidget;
-export '/novahomedomi/novahomedomi_widget.dart' show NovahomedomiWidget;
-export '/novahomedomisemlogin/novahomedomisemlogin_widget.dart'
-    show NovahomedomisemloginWidget;
-export '/suportedomi/suportedomi_widget.dart' show SuportedomiWidget;
-export '/pages/pagamento/semestral/statuspedidosemestral/statuspedidosemestral_widget.dart'
-    show StatuspedidosemestralWidget;
-export '/pages/pagamento/semestral/formapagesemestral/formapagesemestral_widget.dart'
-    show FormapagesemestralWidget;
-export '/sobreoapp/sobreoapp_widget.dart' show SobreoappWidget;
-export '/sobreoapplogado/sobreoapplogado_widget.dart'
-    show SobreoapplogadoWidget;
-export '/termosdeservicoprofi/termosdeservicoprofi_widget.dart'
+export '/pages/principais/principalcomlogin/principalcomlogin_widget.dart'
+    show PrincipalcomloginWidget;
+export '/pages/principais/principalsemlogin/principalsemlogin_widget.dart'
+    show PrincipalsemloginWidget;
+export '/pages/principais/suportedomi/suportedomi_widget.dart'
+    show SuportedomiWidget;
+export '/pages/principais/termosdeservicoprofi/termosdeservicoprofi_widget.dart'
     show TermosdeservicoprofiWidget;
-export '/pages/pagamento/mensal/formapagemensal/formapagemensal_widget.dart'
-    show FormapagemensalWidget;
-export '/pages/pagamento/mensal/statuspedidomensal/statuspedidomensal_widget.dart'
-    show StatuspedidomensalWidget;
-export '/pages/pagamento/anual/pagacartaoanual/pagacartaoanual_widget.dart'
-    show PagacartaoanualWidget;
-export '/pages/pagamento/mensal/pagacartamensal/pagacartamensal_widget.dart'
-    show PagacartamensalWidget;
-export '/pages/pagamento/anual/formapageanual/formapageanual_widget.dart'
-    show FormapageanualWidget;
-export '/pages/pagamento/anual/statuspedidoanual/statuspedidoanual_widget.dart'
-    show StatuspedidoanualWidget;
-export '/pages/enfermagem/listade_enfermagem/listade_enfermagem_widget.dart'
-    show ListadeEnfermagemWidget;
-export '/pages/estetica/listade_estetica/listade_estetica_widget.dart'
-    show ListadeEsteticaWidget;
-export '/pages/fisioterapeutas/listade_fisioterapeuta/listade_fisioterapeuta_widget.dart'
-    show ListadeFisioterapeutaWidget;
-export '/pages/medicos/listade_medicos/listade_medicos_widget.dart'
-    show ListadeMedicosWidget;
-export '/pages/medveterinario/listade_medico_veterinario/listade_medico_veterinario_widget.dart'
-    show ListadeMedicoVeterinarioWidget;
-export '/pages/nutricao/listade_nutricao/listade_nutricao_widget.dart'
-    show ListadeNutricaoWidget;
-export '/pages/psicologia/listade_psicologia/listade_psicologia_widget.dart'
-    show ListadePsicologiaWidget;
-export '/pages/edfisica/perfil_profissionaledfisica/perfil_profissionaledfisica_widget.dart'
-    show PerfilProfissionaledfisicaWidget;
 export '/pages/edfisica/cadastroprofissionaledfisica/cadastroprofissionaledfisica_widget.dart'
     show CadastroprofissionaledfisicaWidget;
 export '/pages/fisioterapeutas/cadastroprofissionalfisioterapia/cadastroprofissionalfisioterapia_widget.dart'
     show CadastroprofissionalfisioterapiaWidget;
 export '/pages/fisioterapeutas/perfil_profissionalfisio/perfil_profissionalfisio_widget.dart'
     show PerfilProfissionalfisioWidget;
-export '/pages/enfermagem/perfil_profissionalenfermage/perfil_profissionalenfermage_widget.dart'
-    show PerfilProfissionalenfermageWidget;
 export '/pages/enfermagem/cadastroprofissionalenferamgem/cadastroprofissionalenferamgem_widget.dart'
     show CadastroprofissionalenferamgemWidget;
 export '/pages/estetica/cadastroprofissionalestetica/cadastroprofissionalestetica_widget.dart'
     show CadastroprofissionalesteticaWidget;
-export '/pages/estetica/perfil_profissionalestetica/perfil_profissionalestetica_widget.dart'
-    show PerfilProfissionalesteticaWidget;
 export '/pages/medicos/cadastroprofissionalmedicos/cadastroprofissionalmedicos_widget.dart'
     show CadastroprofissionalmedicosWidget;
-export '/pages/medicos/perfil_profissionalmedicos/perfil_profissionalmedicos_widget.dart'
-    show PerfilProfissionalmedicosWidget;
 export '/pages/medveterinario/cadastroprofissionalmedveterinario/cadastroprofissionalmedveterinario_widget.dart'
     show CadastroprofissionalmedveterinarioWidget;
-export '/pages/medveterinario/perfil_profissionalmedveterinario/perfil_profissionalmedveterinario_widget.dart'
-    show PerfilProfissionalmedveterinarioWidget;
 export '/pages/nutricao/cadastroprofissionalnutricao/cadastroprofissionalnutricao_widget.dart'
     show CadastroprofissionalnutricaoWidget;
-export '/pages/nutricao/perfil_profissionalnutricao/perfil_profissionalnutricao_widget.dart'
-    show PerfilProfissionalnutricaoWidget;
 export '/pages/psicologia/cadastroprofissionalpsicologo/cadastroprofissionalpsicologo_widget.dart'
     show CadastroprofissionalpsicologoWidget;
+export '/pagamentos/planos_de_pagamento/planos_de_pagamento_widget.dart'
+    show PlanosDePagamentoWidget;
+export '/pages/edfisica/perfil_profissionaledfisica/perfil_profissionaledfisica_widget.dart'
+    show PerfilProfissionaledfisicaWidget;
+export '/pages/enfermagem/perfil_profissionalenfermagem/perfil_profissionalenfermagem_widget.dart'
+    show PerfilProfissionalenfermagemWidget;
+export '/pages/estetica/perfil_profissionalestetica/perfil_profissionalestetica_widget.dart'
+    show PerfilProfissionalesteticaWidget;
+export '/pages/medicos/perfil_profissionalmedicos/perfil_profissionalmedicos_widget.dart'
+    show PerfilProfissionalmedicosWidget;
+export '/pages/medveterinario/perfil_profissionalmedveterinario/perfil_profissionalmedveterinario_widget.dart'
+    show PerfilProfissionalmedveterinarioWidget;
+export '/pages/nutricao/perfil_profissionalnutricao/perfil_profissionalnutricao_widget.dart'
+    show PerfilProfissionalnutricaoWidget;
 export '/pages/psicologia/perfil_profissionalpsicologia/perfil_profissionalpsicologia_widget.dart'
     show PerfilProfissionalpsicologiaWidget;
-export '/editarprofissional/editarprofissional_widget.dart'
-    show EditarprofissionalWidget;
+export '/pages/fisioterapeutas/listade_fisioterapeuta/listade_fisioterapeuta_widget.dart'
+    show ListadeFisioterapeutaWidget;
+export '/pages/edfisica/listade_edfisica/listade_edfisica_widget.dart'
+    show ListadeEdfisicaWidget;
+export '/pages/enfermagem/listadeenfermagem/listadeenfermagem_widget.dart'
+    show ListadeenfermagemWidget;
+export '/pages/estetica/listadeestetica/listadeestetica_widget.dart'
+    show ListadeesteticaWidget;
+export '/pages/medicos/listademedicos/listademedicos_widget.dart'
+    show ListademedicosWidget;
+export '/pages/medveterinario/listademedveterinario/listademedveterinario_widget.dart'
+    show ListademedveterinarioWidget;
+export '/pages/nutricao/listadenutricao/listadenutricao_widget.dart'
+    show ListadenutricaoWidget;
+export '/pages/psicologia/listadepsicologia/listadepsicologia_widget.dart'
+    show ListadepsicologiaWidget;
+export '/pages/principais/ajudasuporte/ajudasuporte_widget.dart'
+    show AjudasuporteWidget;
+export '/pagamentos/pagamento_anual/link_pagamentoanual/link_pagamentoanual_widget.dart'
+    show LinkPagamentoanualWidget;
+export '/pages/principais/perfildeempresas/perfildeempresas_widget.dart'
+    show PerfildeempresasWidget;
+export '/pages/principais/suporteeditarperfilprofissional/suporteeditarperfilprofissional_widget.dart'
+    show SuporteeditarperfilprofissionalWidget;
+export '/pages/principais/termodeservicoprofissional/termodeservicoprofissional_widget.dart'
+    show TermodeservicoprofissionalWidget;
+export '/pages/principais/planos_pagamento/planos_pagamento_widget.dart'
+    show PlanosPagamentoWidget;
+export '/pagamentos/pagamento_anual/pagamentoanual/pagamentoanual_widget.dart'
+    show PagamentoanualWidget;
+export '/pagamentos/pagamento_anual/pagar_com_link/pagar_com_link_widget.dart'
+    show PagarComLinkWidget;
+export '/pagamentos/pagamento_semestral/pagar_com_link_semestral/pagar_com_link_semestral_widget.dart'
+    show PagarComLinkSemestralWidget;
+export '/pagamentos/pagamento_semestral/pagamentosemestral/pagamentosemestral_widget.dart'
+    show PagamentosemestralWidget;
+export '/pagamentos/pagamento_semestral/link_pagamentosemestral/link_pagamentosemestral_widget.dart'
+    show LinkPagamentosemestralWidget;
+export '/pagamentos/pagamento_mensal/pagar_com_link_mensal/pagar_com_link_mensal_widget.dart'
+    show PagarComLinkMensalWidget;
+export '/pagamentos/pagamento_mensal/pagamentomensal/pagamentomensal_widget.dart'
+    show PagamentomensalWidget;
+export '/pagamentos/pagamento_mensal/link_pagamentomensal/link_pagamentomensal_widget.dart'
+    show LinkPagamentomensalWidget;
+export '/renovarpagamento_anual/linkrenovarpagamentoanual/linkrenovarpagamentoanual_widget.dart'
+    show LinkrenovarpagamentoanualWidget;
+export '/renovarpagamento_anual/renovarpagamentoanual/renovarpagamentoanual_widget.dart'
+    show RenovarpagamentoanualWidget;
+export '/renovarpagamento_anual/pagamentopixanual/pagamentopixanual_widget.dart'
+    show PagamentopixanualWidget;
+export '/renovarpagamento_semestral/linkpagamento_semestral/linkpagamento_semestral_widget.dart'
+    show LinkpagamentoSemestralWidget;
+export '/renovarpagamento_semestral/renovarpagamentosemestral/renovarpagamentosemestral_widget.dart'
+    show RenovarpagamentosemestralWidget;
+export '/renovarpagamento_semestral/pagamentopixsemestral/pagamentopixsemestral_widget.dart'
+    show PagamentopixsemestralWidget;
+export '/renovarpagamento_mensal/renovarpagamento_mensal/renovarpagamento_mensal_widget.dart'
+    show RenovarpagamentoMensalWidget;
+export '/renovarpagamento_mensal/pixrenovarpagamento/pixrenovarpagamento_widget.dart'
+    show PixrenovarpagamentoWidget;
+export '/renovarpagamento_mensal/linkpagamentomesnal/linkpagamentomesnal_widget.dart'
+    show LinkpagamentomesnalWidget;
+export '/pages/principais/sobrelogin/sobrelogin_widget.dart'
+    show SobreloginWidget;

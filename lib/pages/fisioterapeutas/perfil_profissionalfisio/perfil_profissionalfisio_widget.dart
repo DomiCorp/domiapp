@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'perfil_profissionalfisio_model.dart';
@@ -35,6 +36,7 @@ class _PerfilProfissionalfisioWidgetState
     super.initState();
     _model = createModel(context, () => PerfilProfissionalfisioModel());
 
+    _model.switchValue = false;
     _model.mensagemaquiTextController ??= TextEditingController();
     _model.mensagemaquiFocusNode ??= FocusNode();
 
@@ -56,7 +58,7 @@ class _PerfilProfissionalfisioWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<FisioterapeutaRecord>(
-      stream: FisioterapeutaRecord.getDocument(widget.proffisiotera!),
+      stream: FisioterapeutaRecord.getDocument(widget!.proffisiotera!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -74,7 +76,9 @@ class _PerfilProfissionalfisioWidgetState
             ),
           );
         }
+
         final perfilProfissionalfisioFisioterapeutaRecord = snapshot.data!;
+
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -120,32 +124,130 @@ class _PerfilProfissionalfisioWidgetState
                 children: [
                   Container(
                     width: 390.0,
-                    height: 270.0,
+                    height: 230.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).info,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: Image.network(
-                          'CAES3AFDZzFVWlhoMFgyeHhaVGgxY2pBd0dBSWllaElnQ2d4QmJHVjRJRkpwY0dGeVpHOFJBQUFBQUFBQU0wQTZBaEFCUUFXb0FRQmFGQkVBQUFBQUFBQWdRQ0VBQUFBQUFBQWdRRUFCbWdFd0NnSUNBU29xQ0FSQ0FoSUFTZ3lDQVFrS0J3b0ZaVzFoYVd5Q0FSTUtFVk5qWVdabWIyeGtYMmsxYjNocU9UZ3krZ01BOGdVSkNRQUFBQUFBQVBBL09oQmxiV0ZwYkhCeWIyWnBZMmx2Ym1Gc1lnRENBUUE9',
-                        ).image,
-                      ),
                       shape: BoxShape.rectangle,
                     ),
-                    child: Stack(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 0.0, 0.0),
+                                child: Container(
+                                  width: 120.0,
+                                  height: 120.0,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.network(
+                                    perfilProfissionalfisioFisioterapeutaRecord
+                                        .img,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      25.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    perfilProfissionalfisioFisioterapeutaRecord
+                                        .nomeprof,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 18.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         Align(
-                          alignment: AlignmentDirectional(0.01, 1.02),
-                          child: Container(
-                            width: 200.0,
-                            height: 200.0,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.network(
-                              perfilProfissionalfisioFisioterapeutaRecord.img,
-                              fit: BoxFit.cover,
-                            ),
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 10.0, 0.0, 0.0),
+                                  child: Text(
+                                    perfilProfissionalfisioFisioterapeutaRecord
+                                        .email,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 10.0, 0.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.solidCommentDots,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
+                              ),
+                              Text(
+                                'Entrar em contato',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Switch.adaptive(
+                                value: _model.switchValue!,
+                                onChanged: (newValue) async {
+                                  setState(
+                                      () => _model.switchValue = newValue!);
+                                },
+                                activeColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                activeTrackColor: Color(0xFF1EF97A),
+                                inactiveTrackColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                inactiveThumbColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -166,70 +268,6 @@ class _PerfilProfissionalfisioWidgetState
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
-                                child: Text(
-                                  perfilProfissionalfisioFisioterapeutaRecord
-                                      .nomeprof,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        fontSize: 25.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
-                                child: Text(
-                                  perfilProfissionalfisioFisioterapeutaRecord
-                                      .email,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        fontSize: 19.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Aperte ao lado para enviar mensagem',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Switch.adaptive(
-                                    value: _model.switchValue ??= false,
-                                    onChanged: (newValue) async {
-                                      setState(
-                                          () => _model.switchValue = newValue!);
-                                    },
-                                    activeColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    activeTrackColor: Color(0xFF1EF97A),
-                                    inactiveTrackColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    inactiveThumbColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                  ),
-                                ],
-                              ),
                               if (_model.switchValue == true)
                                 Container(
                                   width: 350.0,
@@ -348,7 +386,7 @@ class _PerfilProfissionalfisioWidgetState
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 12.0),
+                                                  0.0, 15.0, 0.0, 12.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               await launchURL(
@@ -399,7 +437,7 @@ class _PerfilProfissionalfisioWidgetState
                   ),
                   Container(
                     width: 390.0,
-                    height: 300.0,
+                    height: 320.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
@@ -447,11 +485,11 @@ class _PerfilProfissionalfisioWidgetState
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          15.0, 10.0, 15.0, 0.0),
+                                          15.0, 10.0, 15.0, 10.0),
                                       child: SingleChildScrollView(
                                         primary: false,
                                         child: Column(
-                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
                                               perfilProfissionalfisioFisioterapeutaRecord
