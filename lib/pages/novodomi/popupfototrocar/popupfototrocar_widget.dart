@@ -267,6 +267,23 @@ class _PopupfototrocarWidgetState extends State<PopupfototrocarWidget> {
                                 .update(createUserRecordData(
                               photoUrl: _model.uploadedFileUrl,
                             ));
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Salvar foto'),
+                                  content:
+                                      Text('Sua foto foi salva com sucesso!'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           },
                           text: 'Salvar foto',
                           options: FFButtonOptions(

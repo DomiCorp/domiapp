@@ -373,7 +373,7 @@ class _SobreloginWidgetState extends State<SobreloginWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        context.goNamed('principalsemlogin');
+                        context.goNamed('principalcomlogin');
                       },
                       text: 'Continue',
                       options: FFButtonOptions(

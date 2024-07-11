@@ -112,8 +112,6 @@ class _LinkpagamentoSemestralWidgetState
                   onPressed: () async {
                     await launchURL(
                         'https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084905a624901905ad8b5f7003c');
-
-                    context.pushNamed('escolherprofissa');
                   },
                   text: 'Ir para link de pagamento',
                   options: FFButtonOptions(

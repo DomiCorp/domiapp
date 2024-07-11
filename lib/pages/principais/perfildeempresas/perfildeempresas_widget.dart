@@ -508,22 +508,27 @@ class _PerfildeempresasWidgetState extends State<PerfildeempresasWidget>
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           15.0, 10.0, 15.0, 0.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Text(
-                                            perfildeempresasEmpresasRecord
-                                                .servicos,
-                                            textAlign: TextAlign.justify,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 17.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ],
+                                      child: SingleChildScrollView(
+                                        primary: false,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              perfildeempresasEmpresasRecord
+                                                  .servicos,
+                                              textAlign: TextAlign.justify,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 17.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],

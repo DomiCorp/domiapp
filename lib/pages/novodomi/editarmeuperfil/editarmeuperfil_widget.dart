@@ -298,6 +298,24 @@ class _EditarmeuperfilWidgetState extends State<EditarmeuperfilWidget> {
                                           displayName:
                                               _model.textController.text,
                                         ));
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: Text('Salvo com sucesso!'),
+                                              content: Text(
+                                                  'Suas alterações foram salvas com sucesso!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
                                       },
                                       text: 'salvar alterações',
                                       options: FFButtonOptions(

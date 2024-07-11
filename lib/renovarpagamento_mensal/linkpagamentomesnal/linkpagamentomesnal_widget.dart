@@ -111,8 +111,6 @@ class _LinkpagamentomesnalWidgetState extends State<LinkpagamentomesnalWidget> {
                   onPressed: () async {
                     await launchURL(
                         'https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084905a61e001905adadc710030');
-
-                    context.pushNamed('escolherprofissa');
                   },
                   text: 'Ir para link de pagamento',
                   options: FFButtonOptions(
