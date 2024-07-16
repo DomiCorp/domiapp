@@ -110,7 +110,7 @@ class _TermodecondicaousuarioWidgetState
                                             .headlineLarge
                                             .override(
                                               fontFamily: 'Outfit',
-                                              fontSize: 28.0,
+                                              fontSize: 21.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),

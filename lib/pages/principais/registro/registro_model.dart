@@ -3,7 +3,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/novodomi/termodecondicaousuario/termodecondicaousuario_widget.dart';
+import '/pages/principais/termodecondicaousuario/termodecondicaousuario_widget.dart';
 import 'registro_widget.dart' show RegistroWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -72,8 +72,8 @@ class RegistroModel extends FlutterFlowModel<RegistroWidget> {
     return null;
   }
 
-  // State field(s) for tiposwict widget.
-  bool? tiposwictValue;
+  // State field(s) for tiposwictprofissionaldesaude widget.
+  bool? tiposwictprofissionaldesaudeValue;
   // State field(s) for Switch widget.
   bool? switchValue;
 

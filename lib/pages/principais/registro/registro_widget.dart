@@ -3,7 +3,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/novodomi/termodecondicaousuario/termodecondicaousuario_widget.dart';
+import '/pages/principais/termodecondicaousuario/termodecondicaousuario_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +40,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
     _model.confcriarsenhaTextController ??= TextEditingController();
     _model.confcriarsenhaFocusNode ??= FocusNode();
 
-    _model.tiposwictValue = false;
+    _model.tiposwictprofissionaldesaudeValue = false;
     _model.switchValue = false;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -419,15 +419,16 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                         ),
                                   ),
                                   Switch.adaptive(
-                                    value: _model.tiposwictValue!,
+                                    value: _model
+                                        .tiposwictprofissionaldesaudeValue!,
                                     onChanged: (newValue) async {
-                                      setState(() =>
-                                          _model.tiposwictValue = newValue!);
+                                      setState(() => _model
+                                              .tiposwictprofissionaldesaudeValue =
+                                          newValue!);
                                     },
                                     activeColor:
                                         FlutterFlowTheme.of(context).primary,
-                                    activeTrackColor:
-                                        FlutterFlowTheme.of(context).accent1,
+                                    activeTrackColor: Color(0x4C10F029),
                                     inactiveTrackColor:
                                         FlutterFlowTheme.of(context).alternate,
                                     inactiveThumbColor:
@@ -450,8 +451,7 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                       },
                                       activeColor:
                                           FlutterFlowTheme.of(context).primary,
-                                      activeTrackColor:
-                                          FlutterFlowTheme.of(context).accent1,
+                                      activeTrackColor: Color(0x4C10F029),
                                       inactiveTrackColor:
                                           FlutterFlowTheme.of(context)
                                               .alternate,
@@ -569,7 +569,8 @@ class _RegistroWidgetState extends State<RegistroWidget> {
                                   displayName: _model.nomeTextController.text,
                                   photoUrl:
                                       'https://firebasestorage.googleapis.com/v0/b/domiapp-10.appspot.com/o/user%2F35689842.jpg?alt=media&token=35af7375-a406-45a7-9628-94e4b7a80b32',
-                                  tipo: _model.tiposwictValue,
+                                  tipo:
+                                      _model.tiposwictprofissionaldesaudeValue,
                                 ));
 
                             await showDialog(

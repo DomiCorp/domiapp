@@ -429,6 +429,28 @@ class _LoginusuarioWidgetState extends State<LoginusuarioWidget>
                                                         },
                                                       ).then((value) =>
                                                           safeSetState(() {}));
+
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Confirma E-mail!'),
+                                                            content: Text(
+                                                                'Confirme seu E-mail e acesse o link para validar seu login'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
                                                     }
                                                   },
                                                   text: 'Entrar',

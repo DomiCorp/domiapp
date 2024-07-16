@@ -194,7 +194,7 @@ class _SobreloginWidgetState extends State<SobreloginWidget> {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                'Chat integrado',
+                                                'Facilidade ',
                                                 textAlign: TextAlign.center,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -219,7 +219,7 @@ class _SobreloginWidgetState extends State<SobreloginWidget> {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                'Acerte os detalhes da sua consulta pelo aplicativo',
+                                                'Encontre profissionais de forma facil e acerte os detalhes da sua consulta diretamente com o profissional',
                                                 textAlign: TextAlign.center,
                                                 style: FlutterFlowTheme.of(
                                                         context)

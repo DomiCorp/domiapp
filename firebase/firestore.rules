@@ -65,7 +65,7 @@ service cloud.firestore {
     }
 
     match /empresas/{document} {
-      allow create: if true;
+      allow create: if false;
       allow read: if true;
       allow write: if false;
       allow delete: if false;

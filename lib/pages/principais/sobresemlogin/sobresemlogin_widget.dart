@@ -194,7 +194,7 @@ class _SobresemloginWidgetState extends State<SobresemloginWidget> {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                'Chat integrado',
+                                                'Facilidade',
                                                 textAlign: TextAlign.center,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -219,7 +219,7 @@ class _SobresemloginWidgetState extends State<SobresemloginWidget> {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                'Acerte os detalhes da sua consulta pelo aplicativo',
+                                                'Encontre profissionais de forma fácil e acerte os detalhes da sua consulta diretamente com o profissional',
                                                 textAlign: TextAlign.center,
                                                 style: FlutterFlowTheme.of(
                                                         context)

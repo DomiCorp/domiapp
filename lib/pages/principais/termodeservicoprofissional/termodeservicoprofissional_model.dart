@@ -1,7 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/novodomi/termodecondicaousuario/termodecondicaousuario_widget.dart';
+import '/pages/principais/lertermodecondicaousuario/lertermodecondicaousuario_widget.dart';
+import '/pages/principais/termodecondicaousuario/termodecondicaousuario_widget.dart';
 import 'termodeservicoprofissional_widget.dart'
     show TermodeservicoprofissionalWidget;
 import 'package:flutter/material.dart';

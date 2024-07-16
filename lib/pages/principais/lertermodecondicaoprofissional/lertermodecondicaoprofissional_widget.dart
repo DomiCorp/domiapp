@@ -7,20 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'termodecondicaoprofissional_model.dart';
-export 'termodecondicaoprofissional_model.dart';
+import 'lertermodecondicaoprofissional_model.dart';
+export 'lertermodecondicaoprofissional_model.dart';
 
-class TermodecondicaoprofissionalWidget extends StatefulWidget {
-  const TermodecondicaoprofissionalWidget({super.key});
+class LertermodecondicaoprofissionalWidget extends StatefulWidget {
+  const LertermodecondicaoprofissionalWidget({super.key});
 
   @override
-  State<TermodecondicaoprofissionalWidget> createState() =>
-      _TermodecondicaoprofissionalWidgetState();
+  State<LertermodecondicaoprofissionalWidget> createState() =>
+      _LertermodecondicaoprofissionalWidgetState();
 }
 
-class _TermodecondicaoprofissionalWidgetState
-    extends State<TermodecondicaoprofissionalWidget> {
-  late TermodecondicaoprofissionalModel _model;
+class _LertermodecondicaoprofissionalWidgetState
+    extends State<LertermodecondicaoprofissionalWidget> {
+  late LertermodecondicaoprofissionalModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -31,7 +31,7 @@ class _TermodecondicaoprofissionalWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TermodecondicaoprofissionalModel());
+    _model = createModel(context, () => LertermodecondicaoprofissionalModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -110,7 +110,7 @@ class _TermodecondicaoprofissionalWidgetState
                                             .headlineLarge
                                             .override(
                                               fontFamily: 'Outfit',
-                                              fontSize: 28.0,
+                                              fontSize: 21.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -173,20 +173,23 @@ class _TermodecondicaoprofissionalWidgetState
                                       0.0, 0.0, 16.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      context.pushNamed('termosdeservicoprofi');
+                                      context.pushNamed(
+                                          'Termodeservicoprofissional');
                                     },
-                                    text: 'Cancel',
+                                    text: 'voltar',
                                     options: FFButtonOptions(
                                       padding: EdgeInsets.all(24.0),
                                       iconPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                          .secondary,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 0.0,
@@ -194,38 +197,6 @@ class _TermodecondicaoprofissionalWidgetState
                                         color: FlutterFlowTheme.of(context)
                                             .alternate,
                                         width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 20.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      context.pushNamed('termosdeservicoprofi');
-                                    },
-                                    text: 'Aceitar termo de condição',
-                                    options: FFButtonOptions(
-                                      width: 250.0,
-                                      padding: EdgeInsets.all(24.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 1.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),

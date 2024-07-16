@@ -206,6 +206,23 @@ class _EsqueceusenhaWidgetState extends State<EsqueceusenhaWidget> {
                                     email: _model.emailTextController.text,
                                     context: context,
                                   );
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Restar senha'),
+                                        content: Text(
+                                            'E-mail enviado com sucesso! , acesse o link para resetar a senha.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
                                 },
                                 text: 'Redefinir senha',
                                 options: FFButtonOptions(
