@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 
 import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class DomiGilsonFirebaseUser extends BaseAuthUser {
-  DomiGilsonFirebaseUser(this.user);
+class DomiAppFirebaseUser extends BaseAuthUser {
+  DomiAppFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -53,18 +55,20 @@ class DomiGilsonFirebaseUser extends BaseAuthUser {
 
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
-  static BaseAuthUser fromFirebaseUser(User? user) =>
-      DomiGilsonFirebaseUser(user);
+  static BaseAuthUser fromFirebaseUser(User? user) => DomiAppFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> domiGilsonFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> domiAppFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = DomiGilsonFirebaseUser(user);
+        currentUser = DomiAppFirebaseUser(user);
+        if (!kIsWeb) {
+          FirebaseCrashlytics.instance.setUserIdentifier(user?.uid ?? '');
+        }
         return currentUser!;
       },
     );

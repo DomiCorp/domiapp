@@ -389,7 +389,7 @@ class _PerfilProfissionalmedveterinarioWidgetState
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 15.0, 0.0, 12.0),
+                                                  0.0, 5.0, 0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               await launchURL(
@@ -440,7 +440,7 @@ class _PerfilProfissionalmedveterinarioWidgetState
                   ),
                   Container(
                     width: 390.0,
-                    height: 320.0,
+                    height: 400.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),

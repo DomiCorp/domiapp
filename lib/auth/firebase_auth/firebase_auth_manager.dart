@@ -117,7 +117,7 @@ class FirebaseAuthManager extends AuthManager
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error [ error]')),
+        SnackBar(content: Text('Error:[ ]')),
       );
       return null;
     }
@@ -188,7 +188,7 @@ class FirebaseAuthManager extends AuthManager
       } else if (phoneAuthManager.phoneAuthError != null) {
         final e = phoneAuthManager.phoneAuthError!;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error [ error]'),
+          content: Text('Error:[ ]'),
         ));
         phoneAuthManager.update(() => phoneAuthManager.phoneAuthError = null);
       }
@@ -291,13 +291,13 @@ class FirebaseAuthManager extends AuthManager
       }
       return userCredential == null
           ? null
-          : DomiGilsonFirebaseUser.fromUserCredential(userCredential);
+          : DomiAppFirebaseUser.fromUserCredential(userCredential);
     } on FirebaseAuthException catch (e) {
       final errorMsg = switch (e.code) {
         'email-already-in-use' => 'E-mail já em uso por outra conta',
         'INVALID_LOGIN_CREDENTIALS' =>
           'a credencial de autenticação fornecida está incorreta, malformada ou expirou',
-        _ => 'Error [ error]',
+        _ => 'Error:[ ]',
       };
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(

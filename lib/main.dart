@@ -13,6 +13,8 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter/foundation.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
@@ -24,6 +26,10 @@ void main() async {
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
+
+  if (!kIsWeb) {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  }
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -58,7 +64,7 @@ class _MyAppState extends State<MyApp> {
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
-    userStream = domiGilsonFirebaseUserStream()
+    userStream = domiAppFirebaseUserStream()
       ..listen((user) {
         _appStateNotifier.update(user);
       });
@@ -87,7 +93,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Domi- gilson',
+      title: 'Domi-App',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,

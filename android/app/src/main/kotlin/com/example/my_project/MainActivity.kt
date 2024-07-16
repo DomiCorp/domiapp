@@ -1,4 +1,4 @@
-package com.mycompany.domigilson
+package com.mycompany.domiApp
 
 import io.flutter.embedding.android.FlutterActivity
 
