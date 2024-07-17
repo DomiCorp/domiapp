@@ -71,7 +71,7 @@ class _AtencaofacaloginWidgetState extends State<AtencaofacaloginWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
             child: Text(
-              'Faça o login para ter acesso aos profissionais',
+              'Faça o login para ter acesso as empresas e profissionais',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyLarge.override(
                     fontFamily: 'Readex Pro',
