@@ -375,7 +375,7 @@ class _SobresemloginWidgetState extends State<SobresemloginWidget> {
                       onPressed: () async {
                         context.goNamed('principalcomlogin');
                       },
-                      text: 'Continue',
+                      text: 'Voltar',
                       options: FFButtonOptions(
                         width: 200.0,
                         height: 50.0,
